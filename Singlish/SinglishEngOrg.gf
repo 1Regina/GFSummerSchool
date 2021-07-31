@@ -1,4 +1,4 @@
-concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ParadigmsEng in {
+concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, LexiconEng, ParadigmsEng, WordNetEng in {
     lincat
 
     Phrase  = Phr;
@@ -14,8 +14,6 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ParadigmsEng in {
     -- SChatEnd;    -- lah, leh, liao, lor, mah
     -- SExclaimEnd; -- Sia
 
-
-
     lin
     -- Coercions to start category  (Singlish)
     -- : Pred  -> SChatEnd -> Phrase ;
@@ -29,15 +27,45 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ParadigmsEng in {
 
     -- Coercions to start category  (English)
     -- : Pred -> Phrase ;
-    EngSentence   pred                 = mkPhr (mkUtt pred)  ;
+    EngSentPhrase   pred                 = mkPhr (mkUtt pred)  ;
     -- : QPred ->Phrase;
-    EngQuest      qPred                = mkPhr (mkUtt qPred) ;
+    EngQuestPhrase  qPred                = mkPhr (mkUtt qPred) ;
 
     -- Make Pred and QPred (Proper English)
     -- : Actor -> Action -> Object-> Pred ;
-    MakePred actor action object        = mkUtt (mkS (mkCl (mkNP actor) (mkV2 action) (mkNP object))) ;
+    MakeSentence actor action object     = mkS (mkCl (mkNP actor) (mkV2 action) (mkNP object)) ;
     -- : Actor -> Action -> Object -> QPred;
-    MakeQuest actor action object       = mkUtt (mkQS (mkCl (mkNP actor) (mkV2 action) (mkNP object))) ;
+    MakeQuestion actor action object     =  mkQS (mkCl (mkNP actor) (mkV2 action) (mkNP object)) ;
+
+    -- : Actor -> Action -> Pred  ;
+    PersonAction actor action            = mkCl (mkNP Pron) (mkV action ) ;
+    -- : Action -> Object -> Pred ;
+    VerbPhrase action object             = mkCl (mkVP action) (mkNP object) ;   -- mkVP V2 NP
+
+     -- Actor
+    I       = SyntaxEng.i_Pron      ;
+    YouSg   = SyntaxEng.youSg_Pron  ;
+    YouPl   = SyntaxEng.youPl_Pron  ;
+    YouPol  = SyntaxEng.youPol_Pron ;
+    She     = SyntaxEng.she_Pron    ;
+    They    = SyntaxEng.they_Pron   ;
+    We      = SyntaxEng.we_Pron     ;
+
+    -- Verbs for Singlish
+    Kena_V2 = ss "kena" ;  ---  kena a warning / kena a warning by her
+    -- Kena_V = ss "kena"  ;   --
+    Sabo_V = ss "sabo"  ;
+
+    -- Verbs for English
+    receive = ss "receive"
+
+
+    -- Object CN
+    Scolding = mkNP aPl_Det scolding_1_N ;
+    Fine = mkNP a_Det fine_1_N ;
+    Warning = mkNP a_Det warning_1_N ;
+    Sabo_king = mkNP (mkN "sabo king")
+
 
     -- for Question ends
     Ah      = ss "ah"   ;
@@ -55,9 +83,6 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ParadigmsEng in {
     -- for Exclaim end
     Sia    = ss "sia" ;
 
-    -- Verbs for Singlish
-    Kena_V2 = ss "kena" ;
-    --Sabo = ss "sabo" ;
 
 
     oper
@@ -88,20 +113,20 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ParadigmsEng in {
       Context =
         ConQuestion
       | ConChat
-      | ConExclaim;
+      | ConExclaim ;
 
       QuestionAim =
-        QuestionConsensus
-      | QuestionDeny
-      | PassiveA
-      | YesNo ;
+        QuestionConsensus  -- hor
+      | QuestionDeny       -- meh
+      | PassiveA           -- ah
+      | YesNo ;            -- anot
 
       ChatAim =
-        Firm
-      | Mild
-      | Zen
-      | Past
-      | Justify ;
+        Firm               -- lah
+      | Mild               -- leh
+      | Zen                -- lor
+      | Past               -- liao
+      | Justify ;          -- mah
 
 
 }

@@ -8,6 +8,7 @@ abstract Singlish = {
         Actor;  -- you, I , She
         Action; -- kena, receive
         Object; -- warning, fine, present
+        
 
         SQuestEnd;   -- ah, anot, hor, meh
         SChatEnd;    -- lah, leh, liao, lor, mah
@@ -27,12 +28,16 @@ abstract Singlish = {
 
 
         -- Coercions to start category  (English)
-        EngSentence: Pred -> Phrase ;
-        EngQuest : QPred ->Phrase;
+        EngSentPhrase: Pred -> Phrase ;
+        EngQuestPhrase : QPred ->Phrase;
 
         -- Make Pred and QPred (Proper English)
-        MakePred: Actor -> Action -> Object-> Pred ;
-        MakeQuest: Actor -> Action -> Object -> QPred;
+        MakeSentence: Actor -> Action -> Object-> Pred ;
+        MakeQuestion: Actor -> Action -> Object -> QPred;
+
+        PersonAction : Actor -> Action -> Pred  ;
+        VerbPhrase   : Action -> Object -> Pred ;
+
 
         -- End
         Ah, Anot, Hor, Meh         : SQuestEnd;
@@ -43,6 +48,9 @@ abstract Singlish = {
 }
 -- corpus
 -- She kena a warning
+-- She kena a warning from him
 -- I kena a fine yesterday
+
 -- She sabo us
 -- We kena sabo by them
+-- sabo king  (adjective)
