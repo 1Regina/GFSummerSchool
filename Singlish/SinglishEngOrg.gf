@@ -1,4 +1,4 @@
-concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, LexiconEng, ParadigmsEng, WordNetEng in {
+concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, LexiconEng, ParadigmsEng, WordNetEng in {
     lincat
 
     Phrase  = Phr;
@@ -7,7 +7,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, LexiconEng, Parad
 
     Actor   = Pron ; -- you, I , She
     Action  = V2 ; -- kena, receive
-    Object  = CN ; -- warning, fine, present
+    Object  = NP ; -- warning, fine, present
 
     SQuestEnd, SChatEnd, SExclaimEnd = Voc ;
     -- SQuestEnd;   -- ah, anot, hor, meh
@@ -17,13 +17,13 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, LexiconEng, Parad
     lin
     -- Coercions to start category  (Singlish)
     -- : Pred  -> SChatEnd -> Phrase ;
-    SgpChat       pred  sChatEnd       = mkPhr ((mkUtt pred) (mkVoc (sChatEnd))) ;
+    SgpChat       pred  sChatEnd       = mkPhr ((mkUtt pred) ((sChatEnd))) ;
     -- : QPred -> SQuestEnd -> Phrase;
-    SgpQuest      qPred sQuestEnd      = mkPhr ((mkUtt qPred) (mkVoc (sQuestEnd))) ;
+    SgpQuest      qPred sQuestEnd      = mkPhr ((mkUtt qPred) ( (sQuestEnd))) ;
     -- : Pred  -> SExclaimEnd -> Phrase ;
-    SgpExclaim    pred sExclaimEnd     = mkPhr ((mkUtt pred) (mkVoc (sExclaimEnd))) ;
+    SgpExclaim    pred sExclaimEnd     = mkPhr ((mkUtt pred) ( (sExclaimEnd))) ;
     -- : QPred -> SExclaimEnd -> Phrase ;
-    SgpQExclaim   qPred sExclaimEnd    = mkPhr ((mkUtt qPred) (mkVoc (sExclaimEnd))) ;
+    SgpQExclaim   qPred sExclaimEnd    = mkPhr ((mkUtt qPred) ( (sExclaimEnd))) ;
 
     -- Coercions to start category  (English)
     -- : Pred -> Phrase ;
@@ -33,14 +33,14 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, LexiconEng, Parad
 
     -- Make Pred and QPred (Proper English)
     -- : Actor -> Action -> Object-> Pred ;
-    MakeSentence actor action object     = mkS (mkCl (mkNP actor) (mkV2 action) (mkNP object)) ;
+    MakeSentence actor action object     = mkS (mkCl (mkNP actor) (action) (object)) ;
     -- : Actor -> Action -> Object -> QPred;
-    MakeQuestion actor action object     =  mkQS (mkCl (mkNP actor) (mkV2 action) (mkNP object)) ;
+    MakeQuestion actor action object     =  mkQS (mkCl (mkNP actor) (action) (object)) ;
 
     -- : Actor -> Action -> Pred  ;
-    PersonAction actor action            = mkCl (mkNP Pron) (mkV action ) ;
+    PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ;
     -- : Action -> Object -> Pred ;
-    VerbPhrase action object             = mkCl (mkVP action) (mkNP object) ;   -- mkVP V2 NP
+    VerbPhrase actor action object       = mkS( mkCl (mkNP (ProDrop actor))(mkVP action object)) ;   -- mkVP V2 NP
 
      -- Actor
     I       = SyntaxEng.i_Pron      ;
@@ -57,40 +57,41 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, LexiconEng, Parad
     Sabo_V = ss "sabo"  ;
 
     -- Verbs for English
-    receive = ss "receive"
+    receive = ss "receive" ;
 
 
-    -- Object CN
-    Scolding = mkNP aPl_Det scolding_1_N ;
-    Fine = mkNP a_Det fine_1_N ;
+    -- Object NP
+    Scolding = mkNP aPl_Det scolding_N ;
+    Fine = mkNP a_Det fine_N ;
     Warning = mkNP a_Det warning_1_N ;
-    Sabo_king = mkNP (mkN "sabo king")
+    Sabo_king = mkNP (mkN "sabo king");
 
 
     -- for Question ends
-    Ah      = ss "ah"   ;
-    Anot    = ss "anot" ;
-    Hor     = ss "hor"  ;
-    Meh     = ss "meh"  ;
+    Ah      = mkVoc "ah"   ;
+    Anot    = mkVoc "anot" ;
+    Hor     = mkVoc "hor"  ;
+    Meh     = mkVoc "meh"  ;
 
     -- for Chat ends
-    Lah    = ss "lah"   ;
-    Leh    = ss "leh"   ;
-    Liao   = ss "liao"  ;
-    Lor    = ss "lor"   ;
-    Mah    = ss "mah"   ;
+    Lah    = mkVoc "lah"   ;
+    Leh    = mkVoc "leh"   ;
+    Liao   = mkVoc "liao"  ;
+    Lor    = mkVoc "lor"   ;
+    Mah    = mkVoc "mah"   ;
 
     -- for Exclaim end
-    Sia    = ss "sia" ;
+    Sia    = mkVoc "sia" ;
 
 
 
-    oper
-    Voc : Type;
-    Voc
+    -- oper
 
-    ss : Str -> {s : Str} ;
-    ss s = {s=s} ;
+    -- Voc : Type;
+    -- Voc
+
+    -- ss : Str -> {s : Str} ;
+    -- ss s = {s=s} ;
 
     param
 

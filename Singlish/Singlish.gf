@@ -8,7 +8,7 @@ abstract Singlish = {
         Actor;  -- you, I , She
         Action; -- kena, receive
         Object; -- warning, fine, present
-        
+
 
         SQuestEnd;   -- ah, anot, hor, meh
         SChatEnd;    -- lah, leh, liao, lor, mah
@@ -36,7 +36,8 @@ abstract Singlish = {
         MakeQuestion: Actor -> Action -> Object -> QPred;
 
         PersonAction : Actor -> Action -> Pred  ;
-        VerbPhrase   : Action -> Object -> Pred ;
+        VerbPhrase   : Actor ->  Action -> Object -> Pred ;
+
 
 
         -- End
@@ -51,6 +52,7 @@ abstract Singlish = {
 -- She kena a warning from him
 -- I kena a fine yesterday
 
--- She sabo us
+-- She sabo us/ herself
+
 -- We kena sabo by them
 -- sabo king  (adjective)
