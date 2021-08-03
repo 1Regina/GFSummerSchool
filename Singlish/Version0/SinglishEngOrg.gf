@@ -35,7 +35,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     -- : Actor -> Action -> Object-> Pred ;
     MakeSentence actor action object     = mkS (pastTense) (mkCl (mkNP actor) (action) (object)) ;
     -- : Actor -> Action -> Object -> QPred; -- syntax Singlish do not have a question structure no mkQS
-    MakeQuestion actor action object     =  mkS (pastTense)(anteriorAnt)(mkCl (mkNP actor) (action) (object)) ;
+    MakeQuestion actor action object     =  mkQS (pastTense)(anteriorAnt)(mkQCl (mkCl (mkNP actor) (action) (object))) ;
 
     -- : Actor -> Action -> Pred  ;
     PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ;
