@@ -40,12 +40,12 @@ abstract Singlish = {
 
 
         -- Actor
-        -- I,
-        -- YouSg   ,
-        -- YouPl   ,
-        -- YouPol  ,
-        -- She     ,
-        -- They    ,
+        I,
+        YouSg   ,
+        YouPl   ,
+        YouPol  ,
+        She     ,
+        They    ,
         We      : Actor;
 
         -- Verbs for Singlish
@@ -60,6 +60,7 @@ abstract Singlish = {
         -- Object NP
         Scolding,
         Fine,
+        Penalty,
         Warning,
         Sabo_king : Object ;
 
@@ -72,12 +73,10 @@ abstract Singlish = {
 }
 -- corpus
 -- She kena a warning
+
+
 -- She kena a warning from him
-
-
 -- I kena a fine yesterday
-
 -- She sabo us/ herself
-
 -- We kena sabo by them
 -- sabo king  (adjective)

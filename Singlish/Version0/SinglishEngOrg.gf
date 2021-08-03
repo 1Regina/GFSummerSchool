@@ -34,8 +34,8 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     -- Make Pred and QPred (Proper English)
     -- : Actor -> Action -> Object-> Pred ;
     MakeSentence actor action object     = mkS (pastTense) (mkCl (mkNP actor) (action) (object)) ;
-    -- : Actor -> Action -> Object -> QPred;
-    MakeQuestion actor action object     =  mkS (mkCl (mkNP actor) (action) (object)) ;
+    -- : Actor -> Action -> Object -> QPred; -- syntax Singlish do not have a question structure no mkQS
+    MakeQuestion actor action object     =  mkS (pastTense)(anteriorAnt)(mkCl (mkNP actor) (action) (object)) ;
 
     -- : Actor -> Action -> Pred  ;
     PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ;
@@ -43,12 +43,12 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     VerbPhrase actor action object       = mkS( mkCl (mkNP (ProDrop actor))(mkVP action object)) ;   -- mkVP V2 NP
 
      -- Actor
-    -- I       = SyntaxEng.i_Pron      ;
-    -- YouSg   = SyntaxEng.youSg_Pron  ;
-    -- YouPl   = SyntaxEng.youPl_Pron  ;
-    -- YouPol  = SyntaxEng.youPol_Pron ;
-    -- She     = SyntaxEng.she_Pron    ;
-    -- They    = SyntaxEng.they_Pron   ;
+    I       = SyntaxEng.i_Pron      ;
+    YouSg   = SyntaxEng.youSg_Pron  ;
+    YouPl   = SyntaxEng.youPl_Pron  ;
+    YouPol  = SyntaxEng.youPol_Pron ;
+    She     = SyntaxEng.she_Pron    ;
+    They    = SyntaxEng.they_Pron   ;
     We      = SyntaxEng.we_Pron     ;
 
     -- Verbs for Singlish
@@ -57,11 +57,12 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     -- Sabo =invarV2 "sabo"  ;
 
     -- Verbs for English
-    --Receive = mkV2  "receive" ;
+    -- Receive = mkV2  "receive" ;
 
     -- Object NP
     Scolding = mkNP aPl_Det scolding_N ;
     Fine = mkNP a_Det fine_N ;
+    Penalty = mkNP a_Det penalty_3_N ;
     Warning = mkNP a_Det warning_1_N ;
     Sabo_king = mkNP (mkN "sabo king");
 
@@ -82,46 +83,46 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     -- for Exclaim end
     Sia    = mkVoc "sia" ;
 
-   oper
+   oper -- for Singlish verbs
     invarV2 : Str -> V2 = \str -> mkV2 (mkV str str str str (str+"ing")) ;
 
 
 
-    param
+    -- param
 
-    Tail =
+    -- Tail =
 
-      QuestionPassiveAh                -- How come ah
-    | QuestionYesnoAnot                -- Can you do this anot
-    | QuestionConsensusUncertainHor    -- Correct Hor
-    | QuestionCorrectionDenyMeh        -- I got say meh
+    --   QuestionPassiveAh                -- How come ah
+    -- | QuestionYesnoAnot                -- Can you do this anot
+    -- | QuestionConsensusUncertainHor    -- Correct Hor
+    -- | QuestionCorrectionDenyMeh        -- I got say meh
 
-    | ChatFirmLah                   -- Not like that one lah
-    | ChatMildLeh                   -- I like this one better leh
-    | ChatPastLiao                  -- Gone liao
-    | ChatZenLor                    -- Up to you lor
-    | ChatJustifyMah                -- Bcos I am right mah
+    -- | ChatFirmLah                   -- Not like that one lah
+    -- | ChatMildLeh                   -- I like this one better leh
+    -- | ChatPastLiao                  -- Gone liao
+    -- | ChatZenLor                    -- Up to you lor
+    -- | ChatJustifyMah                -- Bcos I am right mah
 
-    | ExclaimSia                      ;-- Amazing sia
+    -- | ExclaimSia                      ;-- Amazing sia
 
-    param
-      Context =
-        ConQuestion
-      | ConChat
-      | ConExclaim ;
+    -- param
+    --   Context =
+    --     ConQuestion
+    --   | ConChat
+    --   | ConExclaim ;
 
-      QuestionAim =
-        QuestionConsensus  -- hor
-      | QuestionDeny       -- meh
-      | PassiveA           -- ah
-      | YesNo ;            -- anot
+    --   QuestionAim =
+    --     QuestionConsensus  -- hor
+    --   | QuestionDeny       -- meh
+    --   | PassiveA           -- ah
+    --   | YesNo ;            -- anot
 
-      ChatAim =
-        Firm               -- lah
-      | Mild               -- leh
-      | Zen                -- lor
-      | Past               -- liao
-      | Justify ;          -- mah
+    --   ChatAim =
+    --     Firm               -- lah
+    --   | Mild               -- leh
+    --   | Zen                -- lor
+    --   | Past               -- liao
+    --   | Justify ;          -- mah
 
 
 }
