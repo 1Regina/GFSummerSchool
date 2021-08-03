@@ -17,13 +17,13 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     lin
     -- Coercions to start category  (Singlish)
     -- : Pred  -> SChatEnd -> Phrase ;
-    SgpChat       pred  sChatEnd       = mkPhr ((mkUtt pred) ((sChatEnd))) ;
+    SgpChat       pred  sChatEnd       = mkPhr (mkUtt pred) sChatEnd ;
     -- : QPred -> SQuestEnd -> Phrase;
-    SgpQuest      qPred sQuestEnd      = mkPhr ((mkUtt qPred) ( (sQuestEnd))) ;
+    SgpQuest      qPred sQuestEnd      = mkPhr (mkUtt qPred) sQuestEnd ;
     -- : Pred  -> SExclaimEnd -> Phrase ;
-    SgpExclaim    pred sExclaimEnd     = mkPhr ((mkUtt pred) ( (sExclaimEnd))) ;
+    SgpExclaim    pred sExclaimEnd     = mkPhr (mkUtt pred) sExclaimEnd ;
     -- : QPred -> SExclaimEnd -> Phrase ;
-    SgpQExclaim   qPred sExclaimEnd    = mkPhr ((mkUtt qPred) ( (sExclaimEnd))) ;
+    SgpQExclaim   qPred sExclaimEnd    = mkPhr (mkUtt qPred) sExclaimEnd;
 
     -- Coercions to start category  (English)
     -- : Pred -> Phrase ;
@@ -33,7 +33,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
 
     -- Make Pred and QPred (Proper English)
     -- : Actor -> Action -> Object-> Pred ;
-    MakeSentence actor action object     = mkS (mkCl (mkNP actor) (action) (object)) ;
+    MakeSentence actor action object     = mkS (anteriorAnt) (mkCl (mkNP actor) (action) (object)) ;
     -- : Actor -> Action -> Object -> QPred;
     MakeQuestion actor action object     =  mkQS (mkCl (mkNP actor) (action) (object)) ;
 
@@ -52,12 +52,12 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     We      = SyntaxEng.we_Pron     ;
 
     -- Verbs for Singlish
-    Kena_V2 = ss "kena" ;  ---  kena a warning / kena a warning by her
+    Kena = invarV2 "kena" ;  ---  kena a warning / kena a warning by her
     -- Kena_V = ss "kena"  ;   --
-    Sabo_V = ss "sabo"  ;
+    Sabo =invarV2 "sabo"  ;
 
     -- Verbs for English
-    receive = ss "receive" ;
+    Receive = mkV2  "receive" ;
 
 
     -- Object NP
@@ -85,13 +85,10 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
 
 
 
-    -- oper
+   oper
+    invarV2 : Str -> V2 = \str -> mkV2 (mkV str str str str (str+"ing")) ;
 
-    -- Voc : Type;
-    -- Voc
 
-    -- ss : Str -> {s : Str} ;
-    -- ss s = {s=s} ;
 
     param
 

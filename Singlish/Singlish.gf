@@ -39,6 +39,29 @@ abstract Singlish = {
         VerbPhrase   : Actor ->  Action -> Object -> Pred ;
 
 
+        -- Actor
+        I,
+        YouSg   ,
+        YouPl   ,
+        YouPol  ,
+        She     ,
+        They    ,
+        We      : Actor;
+
+        -- Verbs for Singlish
+        Kena,
+        -- Kena_V :
+        Sabo: Action ;
+
+        -- Verbs for English
+        Receive : Action ;
+
+
+        -- Object NP
+        Scolding,
+        Fine,
+        Warning,
+        Sabo_king : Object ;
 
         -- End
         Ah, Anot, Hor, Meh         : SQuestEnd;
