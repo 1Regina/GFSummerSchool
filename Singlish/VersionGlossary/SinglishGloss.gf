@@ -27,8 +27,8 @@ concrete SinglishGloss of Singlish = {
     -- for Exclaim end
     Sia    = ss "to express disbelief" ;
 
-    KenaASaboKing = ss "kena a sabo king" ;
-    KenaSabo = ss "kena sabo-ed by him" ;
+    KenaSaboC = ss "kena sabo" ;
+    KenaSaboQ = ss "kena sabo" ;
 
   oper
     ss : Str -> {s : Str} = \s -> {s = s} ;

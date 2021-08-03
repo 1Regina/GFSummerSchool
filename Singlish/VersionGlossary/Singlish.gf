@@ -15,6 +15,6 @@ abstract Singlish = {
     Ah  , Anot ,  Hor , Meh       : DPQuest ;
     Sia                           : DPExclaim;
 
-    KenaASaboKing       : SChat ;
-    KenaSabo            : SQuest;
+    KenaSaboC            : SChat ;
+    KenaSaboQ            : SQuest;
 }
