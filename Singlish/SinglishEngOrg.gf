@@ -59,7 +59,6 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     -- Verbs for English
     Receive = mkV2  "receive" ;
 
-
     -- Object NP
     Scolding = mkNP aPl_Det scolding_N ;
     Fine = mkNP a_Det fine_N ;
@@ -82,8 +81,6 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
 
     -- for Exclaim end
     Sia    = mkVoc "sia" ;
-
-
 
    oper
     invarV2 : Str -> V2 = \str -> mkV2 (mkV str str str str (str+"ing")) ;
