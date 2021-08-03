@@ -3,7 +3,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
 
     Phrase  = Phr;
     Pred    = S;
-    QPred   = QS;
+    QPred   = S; -- QS;
 
     Actor   = Pron ; -- you, I , She
     Action  = V2 ; -- kena, receive
@@ -33,9 +33,9 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
 
     -- Make Pred and QPred (Proper English)
     -- : Actor -> Action -> Object-> Pred ;
-    MakeSentence actor action object     = mkS (anteriorAnt) (mkCl (mkNP actor) (action) (object)) ;
+    MakeSentence actor action object     = mkS (pastTense) (mkCl (mkNP actor) (action) (object)) ;
     -- : Actor -> Action -> Object -> QPred;
-    MakeQuestion actor action object     =  mkQS (mkCl (mkNP actor) (action) (object)) ;
+    MakeQuestion actor action object     =  mkS (mkCl (mkNP actor) (action) (object)) ;
 
     -- : Actor -> Action -> Pred  ;
     PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ;
@@ -43,21 +43,21 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     VerbPhrase actor action object       = mkS( mkCl (mkNP (ProDrop actor))(mkVP action object)) ;   -- mkVP V2 NP
 
      -- Actor
-    I       = SyntaxEng.i_Pron      ;
-    YouSg   = SyntaxEng.youSg_Pron  ;
-    YouPl   = SyntaxEng.youPl_Pron  ;
-    YouPol  = SyntaxEng.youPol_Pron ;
-    She     = SyntaxEng.she_Pron    ;
-    They    = SyntaxEng.they_Pron   ;
+    -- I       = SyntaxEng.i_Pron      ;
+    -- YouSg   = SyntaxEng.youSg_Pron  ;
+    -- YouPl   = SyntaxEng.youPl_Pron  ;
+    -- YouPol  = SyntaxEng.youPol_Pron ;
+    -- She     = SyntaxEng.she_Pron    ;
+    -- They    = SyntaxEng.they_Pron   ;
     We      = SyntaxEng.we_Pron     ;
 
     -- Verbs for Singlish
     Kena = invarV2 "kena" ;  ---  kena a warning / kena a warning by her
     -- Kena_V = ss "kena"  ;   --
-    Sabo =invarV2 "sabo"  ;
+    -- Sabo =invarV2 "sabo"  ;
 
     -- Verbs for English
-    Receive = mkV2  "receive" ;
+    --Receive = mkV2  "receive" ;
 
     -- Object NP
     Scolding = mkNP aPl_Det scolding_N ;

@@ -40,21 +40,21 @@ abstract Singlish = {
 
 
         -- Actor
-        I,
-        YouSg   ,
-        YouPl   ,
-        YouPol  ,
-        She     ,
-        They    ,
+        -- I,
+        -- YouSg   ,
+        -- YouPl   ,
+        -- YouPol  ,
+        -- She     ,
+        -- They    ,
         We      : Actor;
 
         -- Verbs for Singlish
-        Kena,
+        Kena: Action ;
         -- Kena_V :
-        Sabo: Action ;
+        -- Sabo: Action ;
 
         -- Verbs for English
-        Receive : Action ;
+        -- Receive : Action ;
 
 
         -- Object NP
@@ -73,6 +73,8 @@ abstract Singlish = {
 -- corpus
 -- She kena a warning
 -- She kena a warning from him
+
+
 -- I kena a fine yesterday
 
 -- She sabo us/ herself
