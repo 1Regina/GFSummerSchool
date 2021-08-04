@@ -3,7 +3,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
 
     Phrase  = Phr;
     Pred    = S;
-    QPred   = S; -- QS;
+    QPred   = QS; -- S if want to remove questions
 
     Actor   = Pron ; -- you, I , She
     Action  = V2 ; -- kena, receive
@@ -84,7 +84,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     Sia    = mkVoc "sia" ;
 
    oper -- for Singlish verbs
-    invarV2 : Str -> V2 = \str -> mkV2 (mkV str str str str (str+"ing")) ;
+    invarV2 : Str -> V2 = \str -> mkV2 (mkV str str str (str + "-ed") (str+"ing")) ;
 
 
 
