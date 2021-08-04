@@ -1,11 +1,14 @@
-concrete SinglishS of Singlish = {
+concrete SinglishS of Singlish = open Prelude in {
   lin
-    -- addDP s dp = {s = s.s ++ dp.s } ;
 
-    addDPSChat s dp = {s = s.s ++ dp.s } ;
-    addDPSQuest s dp = {s = s.s ++ dp.s } ;
-    addDPSExclaimChat s dp = {s = s.s ++ dp.s } ;
-    addDPSExclaimQuest s dp = {s = s.s ++ dp.s } ;
+    addDPSChat  ,
+    addDPSQuest,
+    addDPSExclaimChat ,
+    addDPSExclaimQuest  = addDP ;
+
+    makeSChat   sChat     = sChat ;
+    makeSQuest  sQuest    = sQuest ;
+    makeSExclaim sExclaim = sExclaim ;
 
     -- for Chat ends
     Lah    = ss "lah"   ;
@@ -28,7 +31,13 @@ concrete SinglishS of Singlish = {
     KenaSaboQ = ss "kena sabo" ;
 
   oper
-    ss : Str -> {s : Str} = \s -> {s = s} ;
-    -- addDP:  \s dp =  {s = s.s ++ dp.s } ;
+    ss : Str -> {s : Str} = \s -> {s = s} ; -- or ss : Str -> SS = \s = {s = s}
+
+    SS : Type = {s : Str};
+
+    -- in Prelude there is cc2 available
+    cc2 : SS -> SS -> SS ;
+    cc2 ss1 ss2 = {s = ss1.s ++ ss2.s};
+    addDP : SS -> SS -> SS  =  \s , dp ->   {s = s.s ++ dp.s } ;
 
 }

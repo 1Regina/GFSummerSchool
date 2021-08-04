@@ -8,3 +8,5 @@
   CallStack (from HasCallStack):
     error, called at src/compiler/GF/Command/Commands.hs:881:38 in gf-3.11.0-IwHVa7aaPTN3LHNrzNKRBw:GF.Command.Commands
   ```
+5. Demo glossary
+  `l makeSChat (addDPSChat (addDPSChat KenaSaboC Liao) Lah)`
