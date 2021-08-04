@@ -1,13 +1,13 @@
 --# -path=../Version0
 
 incomplete concrete SinglishGlobal of Singlish =
-  open Syntax, Lexicon, WordNet in {
+  open Syntax, Lexicon, WordNet, Extend, Symbolic in {
 
     lincat
 
     Phrase  = Phr;
     Pred    = S;
-    QPred   = S; -- QS;
+    QPred   = QS;
 
     Actor   = Pron ; -- you, I , She
     Action  = V2 ; -- kena, receive
@@ -39,7 +39,7 @@ incomplete concrete SinglishGlobal of Singlish =
     -- : Actor -> Action -> Object-> Pred ;
     MakeSentence actor action object     = mkS (pastTense) (mkCl (mkNP actor) (action) (object)) ;
     -- : Actor -> Action -> Object -> QPred;
-    MakeQuestion actor action object     =  mkS (pastTense)(mkCl (mkNP actor) (action) (object)) ;
+    MakeQuestion actor action object     =  mkQS (pastTense) (mkQCl((mkCl (mkNP actor) (action) (object)))) ;
 
     -- : Actor -> Action -> Pred  ;
     PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ;
@@ -47,47 +47,26 @@ incomplete concrete SinglishGlobal of Singlish =
     VerbPhrase actor action object       = mkS( mkCl (mkNP (ProDrop actor))(mkVP action object)) ;   -- mkVP V2 NP
 
      -- Actor
-    I       = SyntaxEng.i_Pron      ;
-    YouSg   = SyntaxEng.youSg_Pron  ;
-    YouPl   = SyntaxEng.youPl_Pron  ;
-    YouPol  = SyntaxEng.youPol_Pron ;
-    She     = SyntaxEng.she_Pron    ;
-    They    = SyntaxEng.they_Pron   ;
-    We      = SyntaxEng.we_Pron     ;
+    I       = Syntax.i_Pron      ;
+    YouSg   = Syntax.youSg_Pron  ;
+    YouPl   = Syntax.youPl_Pron  ;
+    YouPol  = Syntax.youPol_Pron ;
+    She     = Syntax.she_Pron    ;
+    They    = Syntax.they_Pron   ;
+    We      = Syntax.we_Pron     ;
 
     -- Verbs for Singlish
-    Kena = invarV2 "kena" ;  ---  kena a warning / kena a warning by her
-    -- Kena_V = ss "kena"  ;   --
-    -- Sabo =invarV2 "sabo"  ;
-
-    -- Verbs for English
-    -- Receive = mkV2  "receive" ;
+    -- Kena = invarV2 "kena" ;  ---  kena a warning / kena a warning by her
+    -- Kena = kena_V; -- need so as to create non-existent words in wordnet
 
     -- Object NP
     Scolding = mkNP aPl_Det scolding_N ;
     Fine = mkNP a_Det fine_N ;
     Penalty = mkNP a_Det penalty_3_N ;
     Warning = mkNP a_Det warning_1_N ;
-    Sabo_king = mkNP (mkN "sabo king");
+    -- Sabo_king = mkNP sabo_king_N ; -- need so as to create non-existent words in wordnet -- mkNP (mkN "sabo king"); -- original
 
 
-    -- for Question ends
-    Ah      = mkVoc "ah"   ;
-    Anot    = mkVoc "anot" ;
-    Hor     = mkVoc "hor"  ;
-    Meh     = mkVoc "meh"  ;
 
-    -- for Chat ends
-    Lah    = mkVoc "lah"   ;
-    Leh    = mkVoc "leh"   ;
-    Liao   = mkVoc "liao"  ;
-    Lor    = mkVoc "lor"   ;
-    Mah    = mkVoc "mah"   ;
-
-    -- for Exclaim end
-    Sia    = mkVoc "sia" ;
-
-   oper -- for Singlish verbs
-    invarV2 : Str -> V2 = \str -> mkV2 (mkV str str str str (str+"ing")) ;
 
 }
