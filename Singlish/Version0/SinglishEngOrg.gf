@@ -38,7 +38,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     MakeQuestion actor action object     =  mkQS (pastTense)(anteriorAnt)(mkQCl (mkCl (mkNP actor) (action) (object))) ;
 
     -- : Actor -> Action -> Pred  ;
-    PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ;
+    PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ; -- hack to force a sub-category action: V2 into a higher category
     -- : Action -> Object -> Pred ;
     VerbPhrase actor action object       = mkS( mkCl (mkNP (ProDrop actor))(mkVP action object)) ;   -- mkVP V2 NP
 
