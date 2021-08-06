@@ -1,4 +1,4 @@
-concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, LexiconEng, ParadigmsEng, WordNetEng in {
+concrete SinglishEngOrgCopy of Singlish = open Prelude, SyntaxEng, ExtendEng, LexiconEng, ParadigmsEng, WordNetEng in {
     lincat
 
     Phrase  = Phr;
@@ -37,7 +37,6 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     -- : Actor -> Action -> Object -> QPred; -- syntax Singlish do not have a question structure no mkQS
     MakeQuestion actor action object     =  mkQS (pastTense)(anteriorAnt)(mkQCl (mkCl (mkNP actor) (action) (object))) ;
 
-  
     -- : Actor -> Action -> Pred  ;
     PersonAction actor action            = mkS(mkCl (mkNP actor) (mkVP <action : V> )) ; -- hack to force a sub-category action: V2 into a higher category
     -- : Action -> Object -> Pred ;
@@ -65,8 +64,7 @@ concrete SinglishEngOrg of Singlish = open Prelude, SyntaxEng, ExtendEng, Lexico
     Fine = mkNP a_Det fine_N ;
     Penalty = mkNP a_Det penalty_3_N ;
     Warning = mkNP a_Det warning_1_N ;
-    KC_spider = mkNP a_Det (mkN "kan-cheong spider") ;
-    Sabo_king = mkNP a_Det (mkN "sabo king");
+    Sabo_king = mkNP (mkN "sabo king");
 
 
     -- for Question ends

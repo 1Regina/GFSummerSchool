@@ -15,10 +15,7 @@ abstract Singlish = {
         SExclaimEnd; -- Sia
 
     fun
-        -- Remark: Comment -> Comment;
-        -- SingRemark: Comment -> End -> Comment;
-        -- Clause      : Pred -> Phrase ;
-        -- QClause     : QPred -> Phrase ;
+
 
         -- Coercions to start category  (Singlish)
         SgpChat     : Pred  -> SChatEnd -> Phrase ;
@@ -35,6 +32,7 @@ abstract Singlish = {
         MakeSentence: Actor -> Action -> Object-> Pred ;
         MakeQuestion: Actor -> Action -> Object -> QPred;
 
+        
         PersonAction : Actor -> Action -> Pred  ;
         VerbPhrase   : Actor ->  Action -> Object -> Pred ;
 
@@ -62,6 +60,7 @@ abstract Singlish = {
         Fine,
         Penalty,
         Warning,
+        KC_spider,
         Sabo_king : Object ;
 
         -- End

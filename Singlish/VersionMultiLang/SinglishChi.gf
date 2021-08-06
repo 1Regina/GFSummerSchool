@@ -38,7 +38,8 @@ lin
     Sia    = ss "sia" ;
 
     Kena = P.mkV2 "kena";
-    Sabo_king = mkNP (P.mkN "sabo king");
+    Sabo_king = mkNP a_Det  (P.mkN "sabo king");
+    KC_spider = mkNP a_Det  (P.mkN "kan-cheong spider");
 
    oper
    invarV2 : Str -> V2 = \str -> P.mkV2 (P.mkV str str str (str + "-ed") (str+"ing")) ;
